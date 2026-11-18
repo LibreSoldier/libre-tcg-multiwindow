@@ -15,11 +15,12 @@ keep two game windows open side by side, one on each monitor.
 
 ## How it works
 
-The game's own code never minimizes the window: the Unity player does, when it hears that the
-app lost the focus. The mod sits in front of the window's message handler and:
+The game's own code never minimizes the window: the Unity player does, with Windows'
+`ShowWindow`, when it hears that the app lost the focus. The mod:
 
-1. doesn't pass the "app deactivated" notice on to Unity (keyboard and mouse still get their
-   own focus messages), and
+1. redirects the player's `ShowWindow` import and skips a minimize the player asks for on its
+   own, so the window never leaves the screen (no minimize/restore animation, and it stays on
+   its monitor), and
 2. if the window gets minimized anyway, puts it back without taking the focus (at most 5
    times in 5 seconds, so it never fights something else).
 
@@ -31,8 +32,8 @@ Minimizing the window yourself (the minimize button, the taskbar, a shortcut) st
 
 | Setting | Default | What it does |
 |---|---|---|
-| `HideFocusLoss` | `true` | Don't tell Unity that the game lost the focus. |
-| `RestoreWhenMinimized` | `true` | Put the window back if it gets minimized without you asking. |
+| `BlockMinimize` | `true` | Stop the game from minimizing itself when another window gets the focus. |
+| `RestoreWhenMinimized` | `true` | Put the window back if it gets minimized anyway (without you asking). |
 | `RunInBackground` | `true` | Keep the game running and drawing while another window has the focus. |
 
 ## Building

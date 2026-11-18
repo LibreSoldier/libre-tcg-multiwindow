@@ -4,7 +4,7 @@
     <TargetFramework>net471</TargetFramework>
     <AssemblyName>LibreTcgMultiWindow</AssemblyName>
     <RootNamespace>LibreTcgMultiWindow</RootNamespace>
-    <Version>0.1.0</Version>
+    <Version>0.2.0</Version>
     <!-- Shown by the launcher in the mod's details (AssemblyDescription). -->
     <Description>Keeps the game window on screen when another window gets the focus, instead of minimizing it. Lets you keep two game windows side by side, one on each monitor.</Description>
     <LangVersion>latest</LangVersion>
